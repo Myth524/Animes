@@ -27,11 +27,11 @@ public class Characters {
 
    // Relaciones
 
-    // Relacion Characters - Info (n a 1)
+    // Relacion Characters - Animes (n a 1)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "anime_id")
     @JsonIgnore
-    private Info info;
+    private Animes animes;
 
     // Relacion Characters - Abilities (1 a n)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "characters",cascade = CascadeType.ALL)
@@ -82,12 +82,12 @@ public class Characters {
         this.age = age;
     }
 
-    public Info getInfo() {
-        return info;
+    public Animes getInfo() {
+        return animes;
     }
 
-    public void setInfo(Info info) {
-        this.info = info;
+    public void setInfo(Animes animes) {
+        this.animes = animes;
     }
 
     public List<Abilities> getAbilities() {

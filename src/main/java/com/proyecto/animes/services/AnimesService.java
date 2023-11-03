@@ -1,6 +1,6 @@
 package com.proyecto.animes.services;
 
-import com.proyecto.animes.models.Info;
+import com.proyecto.animes.models.Animes;
 import com.proyecto.animes.repositories.IInfoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
-public class InfoService implements IInfo {
+public class AnimesService implements IAnimes {
 
     // Atributo
 
@@ -19,24 +19,24 @@ public class InfoService implements IInfo {
     // Metodos
 
     @Override
-    public ArrayList<Info> getAllAnimes() {
-        return (ArrayList<Info>) infoDAO.findAll();
+    public ArrayList<Animes> getAllAnimes() {
+        return (ArrayList<Animes>) infoDAO.findAll();
     }
 
     @Override
-    public Optional<Info> getAnimeById(long id) {
+    public Optional<Animes> getAnimeById(long id) {
         return infoDAO.findById(id);
     }
 
     @Override
-    public Info saveAnime(Info anime) {
+    public Animes saveAnime(Animes anime) {
         return infoDAO.save(anime);
     }
 
     @Override
     public boolean deleteAnime(long id) {
         try {
-            Optional<Info> anime = infoDAO.findById(id);
+            Optional<Animes> anime = infoDAO.findById(id);
             infoDAO.delete(anime.get());
             return true;
         } catch (Exception e) {

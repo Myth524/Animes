@@ -1,6 +1,6 @@
 package com.proyecto.animes.services;
 
-import com.proyecto.animes.models.Studio;
+import com.proyecto.animes.models.Studios;
 import com.proyecto.animes.repositories.IStudioDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,24 +19,24 @@ public class StudioService implements IStudio {
     // Metodos
 
     @Override
-    public ArrayList<Studio> getAllStudios() {
-        return (ArrayList<Studio>) studioDAO.findAll();
+    public ArrayList<Studios> getAllStudios() {
+        return (ArrayList<Studios>) studioDAO.findAll();
     }
 
     @Override
-    public Optional<Studio> getStudioById(long id) {
+    public Optional<Studios> getStudioById(long id) {
         return studioDAO.findById(id);
     }
 
     @Override
-    public Studio saveStudio(Studio studio) {
-        return studioDAO.save(studio);
+    public Studios saveStudio(Studios studios) {
+        return studioDAO.save(studios);
     }
 
     @Override
     public boolean deleteStudio(long id) {
         try {
-            Optional<Studio> studio = studioDAO.findById(id);
+            Optional<Studios> studio = studioDAO.findById(id);
             studioDAO.delete(studio.get());
             return true;
         } catch (Exception e) {

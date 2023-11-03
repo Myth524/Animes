@@ -22,14 +22,14 @@ public class Genders {
 
     // Relaciones
 
-        // Relacion Genders - Info (n a n)
+        // Relacion Genders - Animes (n a n)
         @ManyToMany()
         @JoinTable(
-                name = "Info_Genders", joinColumns = @JoinColumn(name = "genders_id", referencedColumnName = "id"),
+                name = "Animes_Genders", joinColumns = @JoinColumn(name = "genders_id", referencedColumnName = "id"),
                 inverseJoinColumns = @JoinColumn(name = "anime_id", referencedColumnName = "id")
         )
         @JsonIgnore
-        private List<Info> info = new ArrayList<>();
+        private List<Animes> animes = new ArrayList<>();
 
     // Constructores
 
@@ -58,11 +58,11 @@ public class Genders {
             this.name = name;
         }
 
-        public List<Info> getInfo() {
-            return info;
+        public List<Animes> getInfo() {
+            return animes;
         }
 
-        public void setInfo(List<Info> info) {
-            this.info = info;
+        public void setInfo(List<Animes> animes) {
+            this.animes = animes;
         }
 }

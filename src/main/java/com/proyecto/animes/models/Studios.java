@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="Studio")
-public class Studio {
+public class Studios {
 
     // Columnas
 
@@ -22,21 +22,21 @@ public class Studio {
 
     // Relaciones
 
-        // Relacion Studio - Info (1 a 1)
+        // Relacion Studio - Animes (1 a 1)
         @OneToOne
-        @JoinColumn(name = "id_anime")
+        @JoinColumn(name = "anime_id")
         @JsonIgnore
-        private Info info;
+        private Animes animes;
 
     // Constructores
 
-    public Studio() {
+    public Studios() {
     }
 
-    public Studio(String name, String country, Info info) {
+    public Studios(String name, String country, Animes animes) {
         this.name = name;
         this.country = country;
-        this.info = info;
+        this.animes = animes;
     }
 
     // Getters and Setters
@@ -66,11 +66,11 @@ public class Studio {
         this.country = country;
     }
 
-    public Info getInfo() {
-        return info;
+    public Animes getInfo() {
+        return animes;
     }
 
-    public void setInfo(Info info) {
-        this.info = info;
+    public void setInfo(Animes animes) {
+        this.animes = animes;
     }
 }

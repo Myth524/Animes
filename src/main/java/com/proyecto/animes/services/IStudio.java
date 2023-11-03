@@ -1,6 +1,6 @@
 package com.proyecto.animes.services;
 
-import com.proyecto.animes.models.Studio ;
+import com.proyecto.animes.models.Studios;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -9,8 +9,8 @@ public interface IStudio {
 
     // Metodos Abstractos
 
-    ArrayList<Studio > getAllStudios();
-    Optional<Studio > getStudioById(long id);
-    Studio  saveStudio(Studio studio);
+    ArrayList<Studios> getAllStudios();
+    Optional<Studios> getStudioById(long id);
+    Studios saveStudio(Studios studios);
     boolean deleteStudio(long id);
 }

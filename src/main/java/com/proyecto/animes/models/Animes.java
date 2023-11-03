@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name="Info")
-public class Info {
+public class Animes {
 
     // Columnas
         @Id
@@ -29,30 +29,30 @@ public class Info {
 
     // Relaciones
 
-        // Relacion Info - Studio (1 a 1)
-        @OneToOne(mappedBy = "info")
-        private Studio studio;
+        // Relacion Animes - Studio (1 a 1)
+        @OneToOne(mappedBy = "animes")
+        private Studios studios;
 
-        // Relacion Info - Character (1 a n)
-        @OneToMany(mappedBy = "info")
+        // Relacion Animes - Character (1 a n)
+        @OneToMany(mappedBy = "animes")
         private List<Characters> characters;
 
-        // Relacion Info - Genders (n a n)
-        @ManyToMany(mappedBy = "info")
+        // Relacion Animes - Genders (n a n)
+        @ManyToMany(mappedBy = "animes")
         private List<Genders> genders;
 
 
     // Constructores
 
-        public Info() {
+        public Animes() {
         }
 
-        public Info(String name, String description, Date releaseDate, int episodes, Studio studio, List<Characters> characters, List<Genders> genders) {
+        public Animes(String name, String description, Date releaseDate, int episodes, Studios studios, List<Characters> characters, List<Genders> genders) {
             this.name = name;
             this.description = description;
             this.releaseDate = releaseDate;
             this.episodes = episodes;
-            this.studio = studio;
+            this.studios = studios;
             this.characters = characters;
             this.genders = genders;
         }
@@ -99,12 +99,12 @@ public class Info {
             this.episodes = episodes;
         }
 
-        public Studio getStudio() {
-            return studio;
+        public Studios getStudio() {
+            return studios;
         }
 
-        public void setStudio(Studio studio) {
-            this.studio = studio;
+        public void setStudio(Studios studios) {
+            this.studios = studios;
         }
 
         public List<Characters> getCharacters() {

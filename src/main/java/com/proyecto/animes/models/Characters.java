@@ -51,4 +51,21 @@ public class Characters {
         @OneToMany(fetch = FetchType.LAZY, mappedBy = "characters",cascade = CascadeType.ALL)
         private List<Abilities> abilities;
 
+   // Métodos getter y setter para relaciones
+        public Animes getAnimes() {
+                return animes;
+        }
+
+        public void setAnimes(Animes animes) {
+                this.animes = animes;
+        }
+
+        public List<Abilities> getAbilities() {
+                return abilities;
+        }
+
+        public void setAbilities(List<Abilities> abilities) {
+                this.abilities = abilities;
+        }
+
 }

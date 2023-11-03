@@ -40,7 +40,9 @@ public class AbilitiesController {
             return ResponseEntity.ok(ability.get());
         }
 
-        /***/
+        // POST /characters/character_id/add (Agregar habilidades a un personaje)
+
+    /***/
         // DELETE /abilities/delete/:id (Eliminar habilidad por id)
         @DeleteMapping("/delete/{id}")
         public ResponseEntity<String> deleteStudio(@PathVariable long id) {

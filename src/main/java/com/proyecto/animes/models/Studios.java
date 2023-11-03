@@ -40,4 +40,12 @@ public class Studios {
         @JsonIgnore
         private Animes animes;
 
+    // Métodos getter y setter para relaciones
+        public Animes getAnimes() {
+                return animes;
+        }
+
+        public void setAnimes(Animes animes) {
+                this.animes = animes;
+        }
 }

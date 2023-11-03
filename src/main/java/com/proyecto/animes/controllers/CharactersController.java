@@ -40,6 +40,8 @@ public class CharactersController {
             return ResponseEntity.ok(character.get());
         }
 
+        // POST /characters/anime_id/add (Agregar personajes a un anime)
+
         // DELETE /characters/delete/:id (Eliminar personaje por id)
         @DeleteMapping("/delete/{id}")
         public ResponseEntity<String> deleteCharacter(@PathVariable long id) {

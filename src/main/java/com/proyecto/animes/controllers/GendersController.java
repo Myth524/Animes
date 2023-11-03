@@ -40,6 +40,8 @@ public class GendersController {
             return ResponseEntity.ok(gender.get());
         }
 
+         // POST /genders/add (Agregar generos)
+
         // DELETE /genders/delete/:id (Eliminar genero por id)
         @DeleteMapping("/delete/{id}")
         public ResponseEntity<String> deleteGender(@PathVariable long id) {

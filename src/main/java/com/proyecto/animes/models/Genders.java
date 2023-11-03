@@ -41,4 +41,12 @@ public class Genders {
         @JsonIgnore
         private List<Animes> animes = new ArrayList<>();
 
+    // Métodos getter y setter para relaciones
+        public List<Animes> getAnimes() {
+                return animes;
+        }
+
+        public void setAnimes(List<Animes> animes) {
+                this.animes = animes;
+        }
 }

@@ -47,15 +47,41 @@ public class Animes {
     // Relaciones
 
         // Relacion Animes - Studio (1 a 1)
-        @OneToOne(mappedBy = "animes")
+        @OneToOne(mappedBy = "animes", cascade = CascadeType.ALL)
         private Studios studios;
 
         // Relacion Animes - Character (1 a n)
-        @OneToMany(mappedBy = "animes")
+        @OneToMany(mappedBy = "animes", cascade = CascadeType.ALL)
         private List<Characters> characters;
 
         // Relacion Animes - Genders (n a n)
-        @ManyToMany(mappedBy = "animes")
+        @ManyToMany(mappedBy = "animes", cascade = CascadeType.ALL)
         private List<Genders> genders;
+
+    // Métodos getter y setter para relaciones
+
+        public Studios getStudios() {
+                return studios;
+        }
+
+        public void setStudios(Studios studios) {
+                this.studios = studios;
+        }
+
+        public List<Characters> getCharacters() {
+                return characters;
+        }
+
+        public void setCharacters(List<Characters> characters) {
+                this.characters = characters;
+        }
+
+        public List<Genders> getGenders() {
+                return genders;
+        }
+
+        public void setGenders(List<Genders> genders) {
+                this.genders = genders;
+        }
 
 }

@@ -3,11 +3,13 @@ package com.proyecto.animes.controllers;
 import com.proyecto.animes.models.*;
 import com.proyecto.animes.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.*;
 
 @RestController
@@ -38,6 +40,24 @@ public class AnimesController {
             }
 
             return ResponseEntity.ok(anime.get());
+        }
+
+        // POST /animes/add (Agregar Anime)
+        @PostMapping("/add")
+        public ResponseEntity<?> saveAnime(@Valid @RequestBody Animes anime, BindingResult result) {
+            if (result.hasErrors()) {
+                return ResponseEntity.badRequest().body("Error en la solicitud.");
+            }
+            try {
+                Studios studio = anime.getStudios();
+                List<Characters> characters = anime.getCharacters();
+                List<String> genders = extractGenderNames(anime);
+
+                animesService.insertAnimeData(anime, studio, characters, genders);
+                return ResponseEntity.ok("Anime agregado con éxito.");
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al agregar el anime");
+            }
         }
 
         // DELETE /animes/delete/:id (Eliminar anime por id)
@@ -89,4 +109,12 @@ public class AnimesController {
             response.put("mensaje", errorMessage);
             return response;
         }
+
+    private List<String> extractGenderNames(Animes anime) {
+        List<String> genderNames = new ArrayList<>();
+        for (Genders gender : anime.getGenders()) {
+            genderNames.add(gender.getName());
+        }
+        return genderNames;
+    }
 }

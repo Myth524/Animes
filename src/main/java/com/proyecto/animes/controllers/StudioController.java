@@ -40,6 +40,9 @@ public class StudioController {
             return ResponseEntity.ok(studio.get());
         }
 
+        // POST /studios/add (Agregar studios)
+
+
         // DELETE /studios/delete/:id (Eliminar studio por id)
         @DeleteMapping("/delete/{id}")
         public ResponseEntity<String> deleteStudio(@PathVariable long id) {

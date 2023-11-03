@@ -2,21 +2,33 @@ package com.proyecto.animes.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Abilities")
 public class Abilities {
 
     // Columnas
 
+        @Getter
+        @Setter
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(unique = true, nullable = false)
         private Long id;
 
+        @Getter
+        @Setter
         @Column(nullable = false)
         private String name;
 
+        @Getter
+        @Setter
         @Column
         private String description;
 
@@ -28,48 +40,4 @@ public class Abilities {
         @JsonIgnore
         private Characters characters;
 
-    // Constructores
-
-        public Abilities() {
-        }
-
-        public Abilities(String name, String description, Characters characters) {
-            this.name = name;
-            this.description = description;
-            this.characters = characters;
-        }
-
-    // Getters and Setter
-
-        public Long getId() {
-            return id;
-        }
-
-        public void setId(Long id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public void setDescription(String description) {
-            this.description = description;
-        }
-
-        public Characters getCharacters() {
-            return characters;
-        }
-
-        public void setCharacters(Characters characters) {
-            this.characters = characters;
-        }
 }

@@ -2,23 +2,35 @@ package com.proyecto.animes.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="Studio")
 public class Studios {
 
     // Columnas
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false)
-    private Long id;
+        @Getter
+        @Setter
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(unique = true, nullable = false)
+        private Long id;
 
-    @Column(unique = true)
-    private String name;
+        @Getter
+        @Setter
+        @Column(unique = true)
+        private String name;
 
-    @Column
-    private String country;
+        @Getter
+        @Setter
+        @Column
+        private String country;
 
     // Relaciones
 
@@ -28,49 +40,4 @@ public class Studios {
         @JsonIgnore
         private Animes animes;
 
-    // Constructores
-
-    public Studios() {
-    }
-
-    public Studios(String name, String country, Animes animes) {
-        this.name = name;
-        this.country = country;
-        this.animes = animes;
-    }
-
-    // Getters and Setters
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public Animes getInfo() {
-        return animes;
-    }
-
-    public void setInfo(Animes animes) {
-        this.animes = animes;
-    }
 }

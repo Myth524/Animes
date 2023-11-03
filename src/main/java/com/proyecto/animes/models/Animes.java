@@ -1,29 +1,46 @@
 package com.proyecto.animes.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Date;
 import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name="Info")
+@Table(name="Animes")
 public class Animes {
 
     // Columnas
+
+        @Getter
+        @Setter
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(unique = true, nullable = false)
         private Long id;
 
+        @Getter
+        @Setter
         @Column(unique = true, nullable = false)
         private String name;
 
+        @Getter
+        @Setter
         @Column
         private String description;
 
+        @Getter
+        @Setter
         @Column
         private Date releaseDate;
 
+        @Getter
+        @Setter
         @Column
         private int episodes;
 
@@ -41,85 +58,4 @@ public class Animes {
         @ManyToMany(mappedBy = "animes")
         private List<Genders> genders;
 
-
-    // Constructores
-
-        public Animes() {
-        }
-
-        public Animes(String name, String description, Date releaseDate, int episodes, Studios studios, List<Characters> characters, List<Genders> genders) {
-            this.name = name;
-            this.description = description;
-            this.releaseDate = releaseDate;
-            this.episodes = episodes;
-            this.studios = studios;
-            this.characters = characters;
-            this.genders = genders;
-        }
-
-    // Getters and Setters
-
-        public Long getId() {
-            return id;
-        }
-
-        public void setId(Long id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public void setDescription(String description) {
-            this.description = description;
-        }
-
-        public Date getReleaseDate() {
-            return releaseDate;
-        }
-
-        public void setReleaseDate(Date releaseDate) {
-            this.releaseDate = releaseDate;
-        }
-
-        public int getEpisodes() {
-            return episodes;
-        }
-
-        public void setEpisodes(int episodes) {
-            this.episodes = episodes;
-        }
-
-        public Studios getStudio() {
-            return studios;
-        }
-
-        public void setStudio(Studios studios) {
-            this.studios = studios;
-        }
-
-        public List<Characters> getCharacters() {
-            return characters;
-        }
-
-        public void setCharacters(List<Characters> characters) {
-            this.characters = characters;
-        }
-
-        public List<Genders> getGenders() {
-            return genders;
-        }
-
-        public void setGenders(List<Genders> genders) {
-            this.genders = genders;
-        }
 }

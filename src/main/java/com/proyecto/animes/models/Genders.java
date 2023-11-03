@@ -2,23 +2,33 @@ package com.proyecto.animes.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Genders")
 public class Genders {
 
     // Columnas
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false)
-    private Long id;
+        @Getter
+        @Setter
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(unique = true, nullable = false)
+        private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String name;
+        @Getter
+        @Setter
+        @Column(unique = true, nullable = false)
+        private String name;
 
     // Relaciones
 
@@ -31,38 +41,4 @@ public class Genders {
         @JsonIgnore
         private List<Animes> animes = new ArrayList<>();
 
-    // Constructores
-
-        public Genders() {
-        }
-
-        public Genders(String name) {
-            this.name = name;
-        }
-
-    // Getters and Setters
-
-        public Long getId() {
-            return id;
-        }
-
-        public void setId(Long id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public List<Animes> getInfo() {
-            return animes;
-        }
-
-        public void setInfo(List<Animes> animes) {
-            this.animes = animes;
-        }
 }

@@ -40,4 +40,13 @@ public class Abilities {
         @JsonIgnore
         private Characters characters;
 
+     // Métodos getter y setter para relaciones
+
+        public Characters getCharacters() {
+                return characters;
+        }
+
+        public void setCharacters(Characters characters) {
+                this.characters = characters;
+        }
 }

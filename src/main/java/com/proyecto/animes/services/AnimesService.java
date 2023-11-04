@@ -1,12 +1,11 @@
 package com.proyecto.animes.services;
 
-import com.proyecto.animes.models.Animes;
-import com.proyecto.animes.models.Characters;
-import com.proyecto.animes.models.Genders;
-import com.proyecto.animes.models.Studios;
+import com.proyecto.animes.models.*;
 import com.proyecto.animes.repositories.IAnimesDAO;
+import com.proyecto.animes.repositories.ICharachtersDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +47,8 @@ public class AnimesService implements IAnimes {
         }
     }
 
-    public void insertAnimeData(Animes anime, Studios studio, List<Characters> characters, List<String> genders) {
+    @Transactional
+    public void insertAnimeData(Animes anime, Studios studio, List<Characters> characters, List<Genders> genders) {
         // Insertar datos del anime
         Animes savedAnime = animesDAO.save(anime);
 
@@ -60,5 +60,12 @@ public class AnimesService implements IAnimes {
         for (Characters character : characters) {
             character.setAnimes(savedAnime);
         }
+
+        // Asignar géneros al anime
+        for (Genders gender : genders) {
+            gender.getAnimes().add(savedAnime);
+        }
+
     }
+
 }

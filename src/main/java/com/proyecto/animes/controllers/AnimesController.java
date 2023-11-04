@@ -51,7 +51,7 @@ public class AnimesController {
             try {
                 Studios studio = anime.getStudios();
                 List<Characters> characters = anime.getCharacters();
-                List<String> genders = extractGenderNames(anime);
+                List<Genders> genders = anime.getGenders();
 
                 animesService.insertAnimeData(anime, studio, characters, genders);
                 return ResponseEntity.ok("Anime agregado con éxito.");
@@ -110,11 +110,4 @@ public class AnimesController {
             return response;
         }
 
-    private List<String> extractGenderNames(Animes anime) {
-        List<String> genderNames = new ArrayList<>();
-        for (Genders gender : anime.getGenders()) {
-            genderNames.add(gender.getName());
-        }
-        return genderNames;
-    }
 }

@@ -5,9 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.Date;
+
 
 @Repository
 public interface IAnimesDAO extends JpaRepository<Animes, Long> {
@@ -21,7 +20,6 @@ public interface IAnimesDAO extends JpaRepository<Animes, Long> {
     @Query(value = "INSERT INTO Studios (name, country, anime_id) " +
             "VALUES (:studioName, :studioCountry, (SELECT id FROM Animes WHERE name = :animeName))", nativeQuery = true)
     void insertStudioData(String studioName, String studioCountry, String animeName);
-
 
     @Query(value = "INSERT INTO Characters (name, lastname, age, anime_id) " +
             "VALUES (:characterName, :characterLastname, :characterAge, (SELECT id FROM Animes WHERE name = :animeName))", nativeQuery = true)

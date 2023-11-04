@@ -49,4 +49,5 @@ public class Genders {
         public void setAnimes(List<Animes> animes) {
                 this.animes = animes;
         }
+
 }

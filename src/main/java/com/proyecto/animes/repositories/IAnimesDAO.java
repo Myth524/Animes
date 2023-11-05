@@ -16,7 +16,6 @@ public interface IAnimesDAO extends JpaRepository<Animes, Long> {
             "VALUES (:name, :description, :releaseDate, :episodes)", nativeQuery = true)
     void insertAnimeData(String name, String description, Date releaseDate, int episodes);
 
-
     @Query(value = "INSERT INTO Studios (name, country, anime_id) " +
             "VALUES (:studioName, :studioCountry, (SELECT id FROM Animes WHERE name = :animeName))", nativeQuery = true)
     void insertStudioData(String studioName, String studioCountry, String animeName);

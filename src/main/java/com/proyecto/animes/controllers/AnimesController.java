@@ -5,9 +5,11 @@ import com.proyecto.animes.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.*;
@@ -25,9 +27,11 @@ public class AnimesController {
 
         // GET /animes (Traer todos los animes)
         @GetMapping("/findAll")
-        public ResponseEntity<List<Animes>> getAllAnimes() {
+        public ModelAndView getAllAnimes() {
             List<Animes> animes = animesService.getAllAnimes();
-            return ResponseEntity.ok(animes);
+            ModelAndView modelAndView = new ModelAndView("animesFindAll");
+            modelAndView.addObject("animes", animes);
+            return modelAndView;
         }
 
         // GET /animes/find/:id (Traer anime por id)
@@ -42,22 +46,24 @@ public class AnimesController {
             return ResponseEntity.ok(anime.get());
         }
 
+        // GET /animes/new (Formulario para agregar anime)
+        @GetMapping("/new")
+        public ModelAndView newAnime() {
+            ModelAndView modelAndView = new ModelAndView("animesForm");
+            modelAndView.addObject("animes", new Animes());
+            return modelAndView;
+        }
+
         // POST /animes/add (Agregar Anime)
         @PostMapping("/add")
         public ResponseEntity<?> saveAnime(@Valid @RequestBody Animes anime, BindingResult result) {
-            if (result.hasErrors()) {
-                return ResponseEntity.badRequest().body("Error en la solicitud.");
-            }
-            try {
+
                 Studios studio = anime.getStudios();
                 List<Characters> characters = anime.getCharacters();
                 List<Genders> genders = anime.getGenders();
 
                 animesService.insertAnimeData(anime, studio, characters, genders);
                 return ResponseEntity.ok("Anime agregado con éxito.");
-            } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al agregar el anime");
-            }
         }
 
         // DELETE /animes/delete/:id (Eliminar anime por id)

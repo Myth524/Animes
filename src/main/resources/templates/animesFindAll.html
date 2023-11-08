@@ -20,7 +20,6 @@
             <th>STUDIO</th>
             <th>CHARACTERS</th>
             <th>GENDERS</th>
-            <th>ACCIONES</th>
         </tr>
         </thead>
         <tbody>
@@ -40,10 +39,6 @@
                 <ul>
                     <li th:each="gender : ${anime.genders}" th:text="${gender.name}"></li>
                 </ul>
-            </td>
-            <td>
-                <a th:href="@{edit/{id}(id=${anime.id})}" class="btn btn-warning">Editar</a>
-                <a class="btn btn-danger">Eliminar</a>
             </td>
         </tr>
         </tbody>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Anime</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+  <div class="col-sm-6">
+    <form th:action="@{'/api/animes/update/' + ${anime.id}}" th:object="${anime}" method="POST">
+      <input type="hidden" name="id" th:value="${anime.id}" />
+      <input type="hidden" name="_method" value="PUT" />
+
+      <input type="hidden" th:field="*{id}" />
+      <input type="text" th:field="*{name}" />
+      <textarea th:field="*{description}"></textarea>
+      <input type="date" th:field="*{releaseDate}" />
+      <button type="submit">Guardar</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

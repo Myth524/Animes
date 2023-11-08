@@ -54,16 +54,31 @@ public class AnimesController {
             return modelAndView;
         }
 
+    // GET /animes/edit/{id} (Formulario para editar anime)
+    @GetMapping("/edit/{id}")
+    public ModelAndView editAnime(@PathVariable Long id) {
+        Optional<Animes> anime = animesService.getAnimeById(id);
+
+        ModelAndView modelAndView = new ModelAndView("editAnimesForm");
+        modelAndView.addObject("anime", anime.get());
+        return modelAndView;
+    }
+
         // POST /animes/add (Agregar Anime)
         @PostMapping("/add")
-        public ResponseEntity<?> saveAnime(@Valid @RequestBody Animes anime, BindingResult result) {
-
+        public ModelAndView saveAnime(@Valid Animes anime, BindingResult result) {
+            if (result.hasErrors()) {
+                ModelAndView modelAndView = new ModelAndView("animesForm");
+                modelAndView.addObject("animes", anime);
+                modelAndView.addObject("errors", result.getAllErrors());
+                return modelAndView;
+            } else {
                 Studios studio = anime.getStudios();
                 List<Characters> characters = anime.getCharacters();
                 List<Genders> genders = anime.getGenders();
-
                 animesService.insertAnimeData(anime, studio, characters, genders);
-                return ResponseEntity.ok("Anime agregado con éxito.");
+                return new ModelAndView("redirect:/api/animes/findAll");
+            }
         }
 
         // DELETE /animes/delete/:id (Eliminar anime por id)

@@ -31,7 +31,6 @@
             <input th:field="*{episodes}" type="text" class="form-control"/>
           </div>
 
-          <!-- Agregamos campos para el estudio -->
           <div class="form-group">
             <label>STUDIO NAME</label>
             <input th:field="*{studios.name}" type="text" class="form-control"/>
@@ -41,7 +40,6 @@
             <input th:field="*{studios.country}" type="text" class="form-control"/>
           </div>
 
-          <!-- Agregamos campos para los personajes -->
           <div class="form-group">
             <label>CHARACTER NAME</label>
             <input th:field="*{characters[0].name}" type="text" class="form-control"/>
@@ -63,7 +61,6 @@
             <input th:field="*{characters[0].abilities[0].description}" type="text" class="form-control"/>
           </div>
 
-          <!-- Agregamos campos para los géneros -->
           <div class="form-group">
             <label>GENRE NAME 1</label>
             <input th:field="*{genders[0].name}" type="text" class="form-control"/>
